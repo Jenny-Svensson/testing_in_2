@@ -5,7 +5,6 @@ import { IMovie } from "../ts/models/IMovie";
 import { createHtml, displayNoResult, init, handleSubmit } from "../ts/movieApp";
 import * as movieApp from '../ts/movieApp';
 
-
 /**** init ****/
 test ('should create form when submitted ', () => {
     document.body.innerHTML = `
