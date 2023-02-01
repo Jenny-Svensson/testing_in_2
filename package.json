@@ -22,5 +22,8 @@
     "coverageReporters": [
       "html"
     ]
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
