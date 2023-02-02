@@ -5,7 +5,10 @@ import { IMovie } from "../ts/models/IMovie";
 import { createHtml, displayNoResult, init, handleSubmit } from "../ts/movieApp";
 import * as movieApp from '../ts/movieApp';
 
-/**** init ****/
+/*###############################
+||            init            ||
+################################*/
+
 test ('should create form when submitted ', () => {
     document.body.innerHTML = `
     <form id="searchForm">
@@ -28,7 +31,9 @@ test ('should create form when submitted ', () => {
 });
 
 
-/**** handleSubmit ****/
+/*################################
+||       handleSubmit()       ||
+################################*/
 
 /**
  * export async function handleSubmit() {
@@ -37,8 +42,12 @@ test ('should create form when submitted ', () => {
  */
 
 
-/**** createHtml ****/
+/*################################
+||         createHtml         ||
+################################*/
+
 jest.mock("../ts/services/movieservice.ts");
+
 test('should createHtml correctly ', () => {
     document.body.innerHTML = `
     <div id="movie-container"></div>
@@ -51,24 +60,25 @@ test('should createHtml correctly ', () => {
 
     createHtml(movies, container);
 
-    let movie = document.createElement("div");
     let title = document.querySelectorAll("h3");
-    let img = document.createElement("img");
 
-    expect(title).toBe(title);
+    expect(title).toBe(title); // <<<<<???????????
 
 });
 
-/**** displayNoResult ****/
-test('should display no results', () => {
+/*################################
+||      displayNoResult       ||
+################################*/
+
+test('should display no results with p tag', () => {
     document.body.innerHTML = `
     <div id="movie-container"></div>
     `;
-    let message = "Inga sökresultat att visa";
 
-    const container: HTMLDivElement = document.getElementById("movie-container") as HTMLDivElement
+    let message = "<p>Inga sökresultat att visa</p>";
 
+    const container: HTMLDivElement = document.getElementById("movie-container") as HTMLDivElement;
+ 
     displayNoResult(container);
-
-    expect(container.innerHTML).toContain(message);
+    expect(container.innerHTML).toEqual(message);
 });
