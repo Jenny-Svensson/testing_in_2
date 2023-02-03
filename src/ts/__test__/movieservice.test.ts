@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { getData } from "../ts/services/movieservice";
+import { getData } from "../services/movieservice";
 
 jest.mock("axios", () => ({
     get: async (url:string) => {
@@ -10,19 +10,19 @@ jest.mock("axios", () => ({
             if (url.endsWith("error")) {
                 reject([]);
             } else {
-                resolve([{Title: "Starwars", imdbID: "123", Type: "movie", Poster: "starwars.jpg", Year: "2023"}]);
+                resolve({ data: {Search: getData }});
             }
         });
     },
 }));
 
 test("should get data correctly ", async () => {
-    let data = await getData("test");
+    await getData("test");
 });
 
 test("should get error getting data", async () => {
     try {
-        let data = await getData("error")
+        await getData("error")
     }
     catch (error: any) {
         expect(error.length).toBe(0)

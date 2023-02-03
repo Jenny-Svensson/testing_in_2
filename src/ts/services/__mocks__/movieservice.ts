@@ -1,6 +1,6 @@
 import { IMovie } from "../../models/IMovie";
 
-let testMovies: IMovie[] = [
+export let testMovies: IMovie[] = [
     {
         Title: "Star Wars: Episode IV - A New Hope",
         imdbID: "tt0076759",
@@ -33,8 +33,11 @@ let testMovies: IMovie[] = [
 ];
 
 export async function getData(): Promise<IMovie[]> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+      if (testMovies.length > 0) {
         resolve(testMovies);
+        } else {
+        reject("Error");
+        }
     });
-
 }

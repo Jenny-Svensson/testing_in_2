@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 
-import { IMovie } from "../ts/models/IMovie";
-import { movieSort } from "../ts/functions"
+import { IMovie } from "../models/IMovie";
+import { movieSort } from "../functions";
 
 
 test('should be sort by title if desc is true ', () => {
@@ -33,7 +33,6 @@ test('should be sort by title if desc is true ', () => {
     ];
 
     // Act
-
     const result = movieSort(testData, true);
 
     // Assert
@@ -81,6 +80,7 @@ test('should be correct if desc is false ', () => {
 });
 
 test ('should keep the order if same name, desc', ()  => {
+    // Arrange
     const movies: IMovie[] = [
         {
             Title: "Pokemon 1",
@@ -97,14 +97,16 @@ test ('should keep the order if same name, desc', ()  => {
             Year: "1999",
         },
     ];
-
+    // Act
     const result = movieSort(movies, true);
 
+    // Assert
     expect(result[0].Poster).toBe("First");
     expect(result[1].Poster).toBe("Second");
 });
 
 test ('should keep the order if same name, ascc', ()  => {
+    // Arrange
     const movies: IMovie[] = [
         {
             Title: "Pokemon 1",
@@ -122,8 +124,10 @@ test ('should keep the order if same name, ascc', ()  => {
         },
     ];
 
+    // Act
     const result = movieSort(movies, false);
 
+    // Assert
     expect(result[0].Poster).toBe("First");
     expect(result[1].Poster).toBe("Second");
 });
